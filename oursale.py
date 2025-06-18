@@ -43,7 +43,11 @@ a,b,c=st.columns(3)
 a.plotly_chart(sale_by_product_fig,use_container_width = True)
 b.plotly_chart(sale_by_city_fig,user_container_width = True)
 c.plotly_chart(sale_by_month_fig,use_container_width = True)
+sale_by_month_df = sale_by_month.reset_index()
+sale_by_month_df.columns = ['Month', 'Total']
+fig_sale_by_month_line = px.line(sale_by_month_df, x='Month', y='Total', title='Sales By Month Line Chart')
 d,e = st.columns(2)
+d.plotly_chart(fig_sale_by_month_line,use_container_width = True)
 fig_scatter = px.scatter(df,x='Total',y='QuantityOrdered',title='Sales By Amount Quantity')
 e.plotly_chart(fig_scatter,use_container_width = True)
 
